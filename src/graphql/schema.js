@@ -5,10 +5,26 @@ const typeDefs = `
     type Query {
         Hola(Nombre : String!): String
         Cursos : [Curso]
+        Login(email : String!, password : String!): String
     }
+
 
     type Mutation {
         AgregarCurso(curso : CursoInput): Curso
+        AgregarUsuario(usuario : UsuarioInput): Usuario
+    }
+
+    type Usuario {
+        id: ID,
+        nombre: String,
+        email: String,
+        password: String,
+    }
+
+    input UsuarioInput {
+        nombre: String,
+        email: String,
+        password: String,
     }
 
     type Curso {
