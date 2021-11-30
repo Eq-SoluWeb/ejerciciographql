@@ -1,4 +1,5 @@
 import { cursos } from "../data/cursos"
+import Curso from "../models/Curso";
 
 export const resolvers = {
     Query : {
@@ -6,12 +7,18 @@ export const resolvers = {
             return "Hola " + args.Nombre 
         },
         Cursos() {
-            return cursos;
+            return Curso.find();
         }
     },
     Mutation : {
-        AgregarCurso(_, {input}){
-            return input;
+        async AgregarCurso(_, {curso}){
+           /* const nCurso = new Curso({
+                nombre: curso.nombre,
+                lenguaje: curso.lenguaje,
+                fecha: curso.fecha,
+            });*/
+            const nCurso = new Curso(curso);
+            return await nCurso.save();
         }
     }
 }

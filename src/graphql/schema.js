@@ -8,21 +8,28 @@ const typeDefs = `
     }
 
     type Mutation {
-        AgregarCurso(input : CursoInput): Curso
+        AgregarCurso(curso : CursoInput): Curso
     }
 
     type Curso {
         id: ID,
         nombre: String,
-        lenguaje: String,
+        lenguajes: [Lenguaje],
         fecha: String,
     } 
 
+    type Lenguaje {
+        lenguaje: String
+    }
+
     input CursoInput {
-        id: ID,
         nombre: String,
-        lenguaje: String,
+        lenguajes: [LenguajeInput],
         fecha: String,
+    }
+
+    input LenguajeInput {
+        lenguaje: String
     }
 `;
 
